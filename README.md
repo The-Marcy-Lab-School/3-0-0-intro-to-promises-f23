@@ -124,7 +124,7 @@ Using a Promise involves two steps:
 1. Start the asynchronous operation and get a Promise back (order your pizza, get your ticket)
 2. Define how to handle the resolved/rejected Promise using `.then()` and `.catch()` (when ready, I will hand in my ticket and get my pizza)
     
-![Diagram showing the flow of Promises](./images/promises.png)
+![Diagram showing the flow of Promises](./images/Promises.svg)
     
 As the asynchronous operation is carried out, the Promise will exist in one of three states: 
 
@@ -134,7 +134,7 @@ As the asynchronous operation is carried out, the Promise will exist in one of t
 
 **<details><summary>Q: When are the callbacks given to `.then()` or `.catch()` executed?</summary>**
 
-When the promise is fulfilled or rejected. NOT when it is initially passed to `.then()` or `.catch()`
+When the promise is fulfilled or rejected (step 5a, or 5b). NOT when it is initially passed to `.then()` or `.catch()` (step 2).
 
 </details><br>
 
