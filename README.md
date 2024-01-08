@@ -10,6 +10,7 @@
 - [Promise Syntax: Reject and Catch](#promise-syntax-reject-and-catch)
 - [Best Practice: Reject with an Error](#best-practice-reject-with-an-error)
 - [Chaining Promises](#chaining-promises)
+- [Coming up...](#coming-up)
 
 ## Sync vs. Async
 
@@ -263,6 +264,8 @@ Promise.resolve("a") // The first promise resolves with "a"
 	})
 	.then(console.log) // print "undefined"
 ```
+
+## Coming up...
 
 Next time, we’ll write code like this:
 
