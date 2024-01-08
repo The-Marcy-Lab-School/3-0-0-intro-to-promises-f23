@@ -36,7 +36,7 @@ This is the essence of **asynchronous operations.**
 
 When working with asynchronous code, since we aren’t always aware of ****when**** the operation will complete, **we need to provide instructions for what to do when that time comes.**
 
-We’ve done this with event handlers using a callback: ***when a button is clicked, this is how you handle it…**
+We’ve done this with event handlers using a callback: *when a button is clicked, handle it with this callback...*
 
 ```jsx
 document.querySelector('#clickButton').addEventListener('click', (e) => {
