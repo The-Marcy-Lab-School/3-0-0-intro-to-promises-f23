@@ -180,9 +180,9 @@ Synchronous code will **always** be executed before asynchronous code
 
 ## Promise Syntax: Reject and Catch
 
-In the last example, the Promise only ever resolves. But most promises will either resolve or reject. 
+In the last example, the Promise always resolves. But many Promises can also reject, often if an error occurs. 
 
-In this example, the Promise will randomly resolve or reject.
+In this next example, the Promise will randomly resolve or reject.
 
 The “consumer” of the Promise then handles each case accordingly.
 
