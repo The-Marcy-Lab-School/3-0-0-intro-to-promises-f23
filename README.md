@@ -111,33 +111,13 @@ Promises aim to provide a more readable approach.
 
 **Promises are used when we want to get some data, but we know it will take time.** More specifically, **a promise is an object** that represents the eventual completion of an asynchronous operation and the resulting value.
 
+> For example, if we want to get data about the current weather from a weather API, it may take time, especially if our internet is slow. When we make that request, we'll be given a promise that will eventually "resolve" to the weather data.
+
 **<details><summary>Q: In this pizza example, what is the promise? what is the resulting value?</summary>**
 
 The ticket is the promise. The resulting value is the pizza!
 
 </details><br>
-  
-**<details><summary>Q: What are more code-related examples of asynchronous operations?</summary>**
-
-- Event handlers! (when I click on this button, show me something)
-- a request to get data from a server (show me the posts on my Instagram feed)
-- a request to send data to a server (post a new picture on my Instagram account)
-
-</details><br>
-
-Promise objects also use callbacks to do something when the async operation is complete, however it is slightly different.
-
-```jsx
-const promise = asyncAction();
-
-promise
-	.then((resolvedValue) => {
-		// do something with resolved value
-	})
-	.catch((error) => {
-		// handle error
-	});
-```
 
 Using a Promise involves two steps:
 
