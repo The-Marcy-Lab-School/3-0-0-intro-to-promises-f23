@@ -132,6 +132,12 @@ As the asynchronous operation is carried out, the Promise will exist in one of t
 - **fulfilled** - the operation was a success! We got the value we wanted. Commonly referred to as “resolved”
 - **rejected** - the operation failed. We got an error back.
 
+**<details><summary>Q: When are the callbacks given to `.then()` or `.catch()` executed?</summary>**
+
+When the promise is fulfilled or rejected. NOT when it is initially passed to `.then()` or `.catch()`
+
+</details><br>
+
 ## Promise Syntax: Resolve and Then
 
 When making a Promise, we define when/how it will resolve. 
