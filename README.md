@@ -171,7 +171,7 @@ console.log("when does this happen?");
 - In this example, we use `setTimeout(...)` to simulate async code. A more realistic example might make an HTTP request or interact with a database, something that takes time.
 - Most often, you don’t create Promises yourself. You’ll use functions like `fetch` that return a Promise and you’ll just "consume" the Promise. You will need to know how to use the returned Promise (using `.then`), but it’s good to know how a Promise is made.
 
-**<details><summary>Q: What is the order of the console.log statements?.</summary>**
+**<details><summary>Q: What is the order of the console.log statements?</summary>**
   
 Synchronous code will **always** be executed before asynchronous code
 
