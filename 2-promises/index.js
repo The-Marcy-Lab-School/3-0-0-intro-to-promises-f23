@@ -1,10 +1,7 @@
 // This function makes a promise and returns it.
 const asyncAction = () => {
-  console.log('async action started');
-
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      console.log('async action done!');
       resolve("Success!"); // resolve after 500ms
     }, 500);
   });

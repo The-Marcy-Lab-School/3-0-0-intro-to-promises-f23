@@ -147,11 +147,8 @@ Then, the “consumer” of the Promise defines what to do with the resulting va
 ```jsx
 // This function makes a promise and returns it.
 const asyncAction = () => {
-	console.log('async action started');
-
 	const promise = new Promise((resolve, reject) => {
 		setTimeout(() => {
-			console.log('async action done!');
 			resolve("Success!"); // resolve after 500ms
 		}, 500);
 	});
@@ -170,11 +167,11 @@ myFirstPromise.then((successMessage) => {
 console.log("when does this happen?");
 ```
 
-- When making a Promise, we call `resolve(...)` when what we were doing asynchronously was successful and `reject(...)` when it failed.
-  - In this example, we use `setTimeout(...)` to simulate async code whereas a more realistic example might make an HTTP request or interact with a database.
-- Most often, you don’t create Promises yourself. You’ll use functions like `fetch` that return a Promise and you’ll just need to know how to use the returned Promise (using `.then`), but it’s good to know how a Promise is made.
+- When making a Promise we call `resolve(...)` when the asynchronous operation succeeds and `reject(...)` when it fails.
+- In this example, we use `setTimeout(...)` to simulate async code. A more realistic example might make an HTTP request or interact with a database, something that takes time.
+- Most often, you don’t create Promises yourself. You’ll use functions like `fetch` that return a Promise and you’ll just "consume" the Promise. You will need to know how to use the returned Promise (using `.then`), but it’s good to know how a Promise is made.
 
-**<details><summary>Q: When does that final `console.log("when does this happen")` get printed? Before or after the `.then()`? What happens if we set the timeout delay to `0`.</summary>**
+**<details><summary>Q: What is the order of the console.log statements?.</summary>**
   
 Synchronous code will **always** be executed before asynchronous code
 
