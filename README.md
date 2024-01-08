@@ -49,15 +49,15 @@ With `setTimeout` we also do this with a callback. `setTimeout` is a good way to
 ```jsx
 console.log('starting!');
 setTimeout(() => { // wait 3 seconds then...
-    console.log(1)
+	console.log(1)
 }, 3000)
 
 setTimeout(() => { // wait 1 seconds then...
-    console.log(2)
+	console.log(2)
 }, 1000)
 
 setTimeout(() => { // wait 2 seconds then...
-    console.log(3)
+	console.log(3)
 }, 2000)
 console.log('done!');
 ```
@@ -85,23 +85,23 @@ In the previous example, we essentially start all of the timers at the same time
 ```jsx
 console.log('starting!');
 setTimeout(() => { // wait 3 seconds then...
-	  console.log(1)
-		setTimeout(() => { // wait 1 seconds then...
-		    console.log(2)
-				setTimeout(() => { // wait 2 second then...
-				    console.log(3)
-						console.log('done!');
-				}, 2000)
-		}, 1000)
+	console.log(1)
+	setTimeout(() => { // wait 1 seconds then...
+		console.log(2)
+		setTimeout(() => { // wait 2 second then...
+			console.log(3)
+			console.log('done!');
+		}, 2000)
+	}, 1000)
 }, 3000)
 ```
 
 The basic idea behind this approach is:
 
 - Start an asynchronous process
-    - When the operation is complete, do something next…
-        - When that operation is complete, do something next…
-            - When that operation is complete, do something next…
+  - When the operation is complete, do something next…
+    - When that operation is complete, do something next…
+      - When that operation is complete, do something next…
 
 This approach is commonly referred to as **callback hell**. 
 
@@ -160,24 +160,26 @@ Then, the “consumer” of the Promise defines what to do with the resulting va
 
 ```jsx
 // This function makes a promise and returns it.
-// The async operation takes 500ms to resolve
 const asyncAction = () => {
-  const promise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("Success!"); // Yay! Everything went well!
-    }, 500);
-  });
+	console.log('async action started');
 
-  return promise;
+	const promise = new Promise((resolve, reject) => {
+		setTimeout(() => {
+			console.log('async action done!');
+			resolve("Success!"); // resolve after 500ms
+		}, 500);
+	});
+
+	return promise;
 }
 
+// "consume" the promise
 const myFirstPromise = asyncAction();
 
+// schedule a callback to execute when the promise resolves
 myFirstPromise.then((successMessage) => {
   console.log(`Fulfilled! ${successMessage}`);
 });
-// successMessage is whatever the Promise resolves to in the function above.
-// It doesn't have to be a string, but if it is only a succeed message, it probably will be.
 
 console.log("when does this happen?");
 ```
