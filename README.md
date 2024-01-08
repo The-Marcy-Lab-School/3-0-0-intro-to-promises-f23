@@ -178,7 +178,7 @@ const myFirstPromise = asyncAction();
 
 // schedule a callback to execute when the promise resolves
 myFirstPromise.then((successMessage) => {
-  console.log(`Fulfilled! ${successMessage}`);
+	console.log(`Fulfilled! ${successMessage}`);
 });
 
 console.log("when does this happen?");
@@ -206,20 +206,20 @@ The “consumer” of the Promise then handles each case accordingly.
 ```jsx
 
 const asyncAction = () => new Promise((resolve, reject) => {
-  setTimeout(() => {
-    const random = Math.random();
-    if (random > 0.5) {
-      resolve(random); // this value will be passed to the .then() callback
-    } else {
-      reject(random); // this value will be passed to the .catch() callback
-    }
-  }, 500);
+	setTimeout(() => {
+		const random = Math.random();
+		if (random > 0.5) {
+			resolve(random); // this value will be passed to the .then() callback
+		} else {
+			reject(random); // this value will be passed to the .catch() callback
+		}
+	}, 500);
 }); 
 
 myFirstPromise = asyncAction();
 
 myFirstPromise
-  .then((data) => { // executes if `resolve()` was invoked
+	.then((data) => { // executes if `resolve()` was invoked
 		console.log(`Fulfilled! ${data}`)
 	})
   .catch((errorMessage) => { // executes if `reject()` was invoked
@@ -233,23 +233,23 @@ In the last example, we invoke `resolve` and `reject` with the same value. Howev
 
 ```jsx
 const asyncAction = () => new Promise((resolve, reject) => {
-  setTimeout(() => {
-    const random = Math.random();
-    if (random > 0.5) {
-      resolve(random);
-    } else {
-      reject(new Error(random)); // Create an Error object with random as the "message"
-    }
-  }, 500);
+	setTimeout(() => {
+		const random = Math.random();
+		if (random > 0.5) {
+			resolve(random);
+		} else {
+			reject(new Error(random)); // Create an Error object with random as the "message"
+		}
+	}, 500);
 }); 
 
 myFirstPromise = asyncAction();
 
 myFirstPromise
-  .then((data) => {
+	.then((data) => {
 		console.log(`Fulfilled! ${data}`)
 	})
-  .catch((error) => { // error is the rejected Error object which has a .message property
+	.catch((error) => { // error is the rejected Error object which has a .message property
 		console.error(`Rejected :( ${error.message}`)
 	})
 ```
