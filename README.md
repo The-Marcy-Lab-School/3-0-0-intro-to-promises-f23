@@ -113,7 +113,7 @@ Promises aim to provide a more readable approach.
 
 > For example, if we want to get data about the current weather from a weather API, it may take time, especially if our internet is slow. When we make that request, we'll be given a promise that will eventually "resolve" to the weather data.
 
-**<details><summary>Q: In this pizza example, what is the promise? what is the resulting value?</summary>**
+**<details><summary>Q: In the pizza shop example, what is the promise object we are given? what is the resulting value?</summary>**
 
 The ticket is the promise. The resulting value is the pizza!
 
@@ -121,8 +121,8 @@ The ticket is the promise. The resulting value is the pizza!
 
 Using a Promise involves two steps:
 
-1. Start the asynchronous operation and get a Promise back
-2. Define how to handle the resolved/rejected Promise using `.then()` and `.catch()`
+1. Start the asynchronous operation and get a Promise back (order your pizza, get your ticket)
+2. Define how to handle the resolved/rejected Promise using `.then()` and `.catch()` (when ready, I will hand in my ticket and get my pizza)
     
 ![Diagram showing the flow of Promises](./images/promises.png)
     
