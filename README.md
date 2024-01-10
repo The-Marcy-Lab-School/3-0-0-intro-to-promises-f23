@@ -125,7 +125,7 @@ Using a Promise involves two steps:
 1. Start the asynchronous operation and get a Promise back (order your pizza, get your ticket)
 2. Define how to handle the resolved/rejected Promise using `.then()` and `.catch()` (when ready, I will hand in my ticket and get my pizza)
     
-![Diagram showing the flow of Promises](./images/promises.svg)
+![Diagram showing the flow of Promises](./images/Promises.svg)
     
 As the asynchronous operation is carried out, the Promise will exist in one of three states: 
 
