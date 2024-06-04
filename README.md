@@ -4,12 +4,12 @@
 
 - [Sync vs. Async](#sync-vs-async)
 - [So… what next? Callbacks](#so-what-next-callbacks)
-  - [Limitations of Callbacks — Callback Hell](#limitations-of-callbacks--callback-hell)
+	- [Limitations of Callbacks — Callback Hell](#limitations-of-callbacks--callback-hell)
 - [So… what next? Promises!](#so-what-next-promises)
-- [Promise Syntax: Resolve and Then](#promise-syntax-resolve-and-then)
-- [Promise Syntax: Reject and Catch](#promise-syntax-reject-and-catch)
-- [Best Practice: Reject with an Error](#best-practice-reject-with-an-error)
-- [Chaining Promises](#chaining-promises)
+	- [Promise Syntax: Resolve and Then](#promise-syntax-resolve-and-then)
+	- [Promise Syntax: Reject and Catch](#promise-syntax-reject-and-catch)
+	- [Best Practice: Reject with an Error](#best-practice-reject-with-an-error)
+	- [Chaining Promises](#chaining-promises)
 - [Coming up...](#coming-up)
 
 ## Sync vs. Async
@@ -39,26 +39,26 @@ When working with asynchronous code, since we aren’t always aware of ****when*
 
 We’ve done this with event handlers using a callback: *when a button is clicked, handle it with this callback...*
 
-```jsx
+```js
 document.querySelector('#clickButton').addEventListener('click', (e) => {
-	console.log('the button has been clicked!'));
-}
+  console.log('the button has been clicked!');
+});
 ```
 
 With `setTimeout` we also do this with a callback. `setTimeout` is a good way to fake asynchronous operations. `setTimeout` takes a callback and an amount of time in milliseconds (1000ms === 1s). It will execute the callback after the time passes.
 
-```jsx
+```js
 console.log('starting!');
 setTimeout(() => { // wait 3 seconds then...
-	console.log(1)
+  console.log(1)
 }, 3000)
 
 setTimeout(() => { // wait 1 seconds then...
-	console.log(2)
+  console.log(2)
 }, 1000)
 
 setTimeout(() => { // wait 2 seconds then...
-	console.log(3)
+  console.log(3)
 }, 2000)
 console.log('done!');
 ```
@@ -75,7 +75,7 @@ console.log('done!');
 1
 ```
 
-and then `1` `2` `3` if the timers are set to `0`, but `"starting!"` and `"done!"` will still be first. This is because synchronous operations will complete first, no matter how quickly the asynchronous operations take.
+If the timers are all set to `0`, `"starting!"` and `"done!"` will still be first followed by `1` `2` `3`  This is because synchronous operations will complete first, no matter how quickly the asynchronous operations take.
 
 </details><br>
 
@@ -86,14 +86,14 @@ In the previous example, we essentially start all of the timers at the same time
 ```jsx
 console.log('starting!');
 setTimeout(() => { // wait 3 seconds then...
-	console.log(1)
-	setTimeout(() => { // wait 1 seconds then...
-		console.log(2)
-		setTimeout(() => { // wait 2 second then...
-			console.log(3)
-			console.log('done!');
-		}, 2000)
-	}, 1000)
+  console.log(1)
+  setTimeout(() => { // wait 1 seconds then...
+    console.log(2)
+    setTimeout(() => { // wait 2 second then...
+      console.log(3)
+      console.log('done!');
+    }, 2000)
+  }, 1000)
 }, 3000)
 ```
 
@@ -139,7 +139,7 @@ When the promise is fulfilled or rejected (step 5a, or 5b). NOT when it is initi
 
 </details><br>
 
-## Promise Syntax: Resolve and Then
+### Promise Syntax: Resolve and Then
 
 When making a Promise, we define when/how it will resolve. 
 
@@ -148,13 +148,13 @@ Then, the “consumer” of the Promise defines what to do with the resulting va
 ```jsx
 // This function makes a promise and returns it.
 const asyncAction = () => {
-	const promise = new Promise((resolve, reject) => {
-		setTimeout(() => {
-			resolve("Success!"); // resolve after 500ms
-		}, 500);
-	});
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("Success!"); // resolve after 500ms
+    }, 500);
+  });
 
-	return promise;
+  return promise;
 }
 
 // "consume" the promise
@@ -162,7 +162,7 @@ const myFirstPromise = asyncAction();
 
 // schedule a callback to execute when the promise resolves
 myFirstPromise.then((successMessage) => {
-	console.log(`Fulfilled! ${successMessage}`);
+  console.log(`Fulfilled! ${successMessage}`);
 });
 
 console.log("when does this happen?");
@@ -179,7 +179,7 @@ Synchronous code will **always** be executed before asynchronous code
 </details><br>
     
 
-## Promise Syntax: Reject and Catch
+### Promise Syntax: Reject and Catch
 
 In the last example, the Promise always resolves. But many Promises can also reject, often if an error occurs. 
 
@@ -190,55 +190,55 @@ The “consumer” of the Promise then handles each case accordingly.
 ```jsx
 
 const asyncAction = () => new Promise((resolve, reject) => {
-	setTimeout(() => {
-		const random = Math.random();
-		if (random > 0.5) {
-			resolve(random); // this value will be passed to the .then() callback
-		} else {
-			reject(random); // this value will be passed to the .catch() callback
-		}
-	}, 500);
+  setTimeout(() => {
+    const random = Math.random();
+    if (random > 0.5) {
+      resolve(random); // this value will be passed to the .then() callback
+    } else {
+      reject(random); // this value will be passed to the .catch() callback
+    }
+  }, 500);
 }); 
 
 myFirstPromise = asyncAction();
 
 myFirstPromise
-	.then((data) => { // executes if `resolve()` was invoked
-		console.log(`Fulfilled! ${data}`)
-	})
+  .then((data) => { // executes if `resolve()` was invoked
+    console.log(`Fulfilled! ${data}`)
+  })
   .catch((errorMessage) => { // executes if `reject()` was invoked
-		console.error(`Rejected :( ${errorMessage}`)
-	})
+    console.error(`Rejected :( ${errorMessage}`)
+  })
 ```
 
-## Best Practice: Reject with an Error
+### Best Practice: Reject with an Error
 
 In the last example, we invoke `resolve` and `reject` with the same value. However, as a best practice, we should `reject` with an `Error` object. Most producers of Promises adhere to this best practice and most consumers of Promises expect this. 
 
 ```jsx
 const asyncAction = () => new Promise((resolve, reject) => {
-	setTimeout(() => {
-		const random = Math.random();
-		if (random > 0.5) {
-			resolve(random);
-		} else {
-			reject(new Error(random)); // Create an Error object with random as the "message"
-		}
-	}, 500);
+  setTimeout(() => {
+    const random = Math.random();
+    if (random > 0.5) {
+      resolve(random);
+    } else {
+      reject(new Error(random)); // Create an Error object with random as the "message"
+    }
+  }, 500);
 }); 
 
 myFirstPromise = asyncAction();
 
 myFirstPromise
-	.then((data) => {
-		console.log(`Fulfilled! ${data}`)
-	})
-	.catch((error) => { // error is the rejected Error object which has a .message property
-		console.error(`Rejected :( ${error.message}`)
-	})
+  .then((data) => {
+    console.log(`Fulfilled! ${data}`)
+  })
+  .catch((error) => { // error is the rejected Error object which has a .message property
+    console.error(`Rejected :( ${error.message}`)
+  })
 ```
 
-## Chaining Promises
+### Chaining Promises
 
 Now **this** is where Promises are super useful and solve the callback hell approach. 
 
@@ -251,18 +251,18 @@ The Promise that `.then()` returns will resolve to the value that its callback r
 
 Promise.resolve("a") // The first promise resolves with "a"
   .then((str) => { 
-		console.log(str) // print "a"
-		return "b";      // This `.then()` resolves a new promise with "b"
-	})
-	.then((str) => { 
-		console.log(str) // print "b"
-		return "c";      // This `.then()` resolves a new promise with "c"
-	})
-	.then((str) => {
-		console.log(str) // print "c"
-		// This `.then()` just resolves a new promise with undefined
-	})
-	.then(console.log) // print "undefined"
+    console.log(str) // print "a"
+    return "b";      // This `.then()` resolves a new promise with "b"
+  })
+  .then((str) => { 
+    console.log(str) // print "b"
+    return "c";      // This `.then()` resolves a new promise with "c"
+  })
+  .then((str) => {
+    console.log(str) // print "c"
+    // This `.then()` just resolves a new promise with undefined
+  })
+  .then(console.log) // print "undefined"
 ```
 
 ## Coming up...
@@ -275,7 +275,7 @@ const fetchPromise = fetch('https://pokeapi.co/api/v2/pokemon/pikachu');
 
 // Define what to do with the resolved Promise
 fetchPromise
-	.then((response) => response.json())
-	.then((jsonData) => console.log(jsonData))
-	.catch((error) => console.error(error.message))
+  .then((response) => response.json())
+  .then((jsonData) => console.log(jsonData))
+  .catch((error) => console.error(error.message))
 ```
