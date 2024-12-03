@@ -19,7 +19,7 @@ rollPromise
     console.log(successMessage);
   })
   .catch((failureMessage) => {
-    console.log(failureMessage);
+    console.error(failureMessage);
   })
 
 
