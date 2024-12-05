@@ -1,3 +1,5 @@
+// NOTE: This program will only work if you are running it from the same directory.
+
 // Now, we'll use the promises version of fs
 const fs = require('node:fs/promises');
 

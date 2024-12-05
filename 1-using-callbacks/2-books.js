@@ -1,3 +1,5 @@
+// NOTE: This program will only work if you are running it from the same directory.
+
 /* 
 fs is a built-in Node package with methods for interacting with your 'file system'
 - fs.readFile also uses a callback to execute asynchronous code

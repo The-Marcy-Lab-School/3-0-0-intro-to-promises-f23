@@ -1,3 +1,5 @@
+// NOTE: This program will only work if you are running it from the same directory.
+
 const fs = require('node:fs/promises');
 
 // First, start both processes and save the promises
