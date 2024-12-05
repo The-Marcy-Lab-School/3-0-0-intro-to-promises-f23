@@ -1,9 +1,5 @@
 // Note: We're now using the promises version of fs
 const fs = require('node:fs/promises');
-const path = require('node:path');
-
-const booksFilePath = path.join(__dirname, '../data/books.csv');
-const booksHugeFilePath = path.join(__dirname, '../data/booksHuge.csv');
 
 /*
 TODO: 
@@ -15,7 +11,7 @@ HINTs:
 - Each .then returns a promise allowing for chaining!
 */
 console.log("Reading the booksHuge.csv file");
-fs.readFile(booksHugeFilePath, 'utf-8', (err, data) => {
+fs.readFile('../data/booksHuge.csv', 'utf-8', (err, data) => {
   if (err) {
     console.error(err);
   } else {

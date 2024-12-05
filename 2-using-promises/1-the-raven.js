@@ -1,13 +1,10 @@
-const path = require('node:path');
-const ravenFilePath = path.join(__dirname, '../data/the-raven.txt');
-
 // Now, we'll use the promises version of fs
 const fs = require('node:fs/promises');
 
 console.log("Reading the-raven.txt");
 
 // A Promise object is returned
-const promise = fs.readFile(ravenFilePath, 'utf8');
+const promise = fs.readFile('../data/the-raven.txt', 'utf8');
 
 // The .then and .catch methods schedule resolve/reject handlers
 promise
@@ -21,5 +18,5 @@ promise
     console.error(err);
   });
 
-// The object looks like this: Promise { <pending> }
+// The object on its own looks like this: Promise { <pending> }
 console.log(promise);

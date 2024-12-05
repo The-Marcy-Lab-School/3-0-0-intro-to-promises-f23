@@ -1,32 +1,26 @@
 // Note: We're now using the promises version of fs
-const path = require('node:path');
-
-const booksFilePath = path.join(__dirname, '../data/books.csv');
-const booksHugeFilePath = path.join(__dirname, '../data/booksHuge.csv');
-
-/*
-- TODO: "Refactor" this code to use promises 
-- HINT: The .then callback is only given the data
-- HINT: We only need one .catch to handle all errors
-- HINT: Each .then returns a promise so we can chain together the .then and .catch calls!
-*/
 const fs = require('node:fs/promises');
 
 console.log("Reading the booksHuge.csv file");
-fs.readFile(booksHugeFilePath, 'utf-8')
+
+// Often, we will just call .then directly on the function call
+fs.readFile('../data/booksHuge.csv', 'utf-8')
   .then((data) => {
     const lines = data.split('\n').length;
     console.log(`Done reading the booksHuge.csv file. There were ${lines} lines.`);
-  })
-  .then(() => {
-    console.log("Reading the books.csv file");
-    // by returning the readFile promise, we can continue to chain
-    return fs.readFile(booksFilePath, 'utf-8')
+
+    // start the next async process
+    console.log("Reading the books.csv file next");
+
+    // the promise returned here is handled by the next .then()
+    return fs.readFile('../data/books.csv', 'utf-8');
   })
   .then((data) => {
+    // handle the data from books.csv
     const lines = data.split('\n').length;
     console.log(`Done reading the books.csv file. There were ${lines} lines.`);
   })
   .catch((err) => {
+    // We only need one error handler for both asynchronous function calls
     console.error(err);
   });

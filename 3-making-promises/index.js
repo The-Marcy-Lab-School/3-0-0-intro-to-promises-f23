@@ -23,14 +23,13 @@ rollPromise
   })
 
 
-// The simplest Promise looks like this. It will resolve 100% of the time:
-const guarantee = new Promise((resolve, reject) => {
-  resolve('100% of the time, it works every time');
-});
+// Here is an asynchronous function that returns a promise that ALWAYS resolves
+const makeGuarantee = () => {
+  return new Promise((resolve, reject) => {
+    resolve('100% of the time, it works every time');
+  });
+}
 
-// guarantee.then(data => {
-//   console.log("I dont even need a catch since it will always resolve");
-//   console.log(data);
-// })
+// How would you invoke this asynchronous function and handle the promise?
 
 // Q: How can you make it always fail? How would you handle that failing promise?

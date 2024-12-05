@@ -1,28 +1,23 @@
 const fs = require('node:fs/promises');
-const path = require('node:path');
 
-// __dirname returns the absolute path to the directory of this file
-const booksFilePath = path.join(__dirname, '../data/books.csv');
-const booksHugeFilePath = path.join(__dirname, '../data/booksHuge.csv');
-
-/*
-- TODO: "Refactor" this code to use promises 
-- HINT: The .then callback is only given the data
-- HINT: We only need one .catch to handle all errors
-- HINT: Each .then returns a promise so we can chain together the .then and .catch calls!
-*/
-const booksHugePromise = fs.readFile(booksHugeFilePath, 'utf-8')
-const booksPromise = fs.readFile(booksFilePath, 'utf-8')
-
-// Promise.all waits for all promises to resolve (or reject) before executing the callback
+// First, start both processes and save the promises
 console.log("Reading both files!");
-Promise.all([booksHugePromise, booksPromise])
+const booksHugePromise = fs.readFile('../data/booksHuge.csv', 'utf-8')
+const booksPromise = fs.readFile('../data/books.csv', 'utf-8')
+
+// Then, put the promises into an array
+const promises = [booksHugePromise, booksPromise]
+
+// Promise.all returns a promise that settles once all of the provided promises have settled
+Promise.all(promises)
   .then((values) => {
+    // values will contain the resolved values of the provided promises
     const booksHugeLines = values[0].split('\n').length;
     const booksLines = values[1].split('\n').length;
     console.log(`There were ${booksHugeLines} lines in booksHuge.csv!`);
     console.log(`There were ${booksLines} lines in books.csv!`);
   })
   .catch((err) => {
+    // the err value will be from the first promise that fails
     console.error(err);
   });
